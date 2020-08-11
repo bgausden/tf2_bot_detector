@@ -180,6 +180,7 @@ target_include_directories(tf2_bot_detector
 )
 target_compile_definitions(tf2_bot_detector PRIVATE WIN32_LEAN_AND_MEAN)
 
+set(TF2BD_ENABLE_DISCORD_INTEGRATION off)
 option(TF2BD_ENABLE_DISCORD_INTEGRATION "Enable discord integration" on)
 if (TF2BD_ENABLE_DISCORD_INTEGRATION)
 	target_compile_definitions(tf2_bot_detector PRIVATE TF2BD_ENABLE_DISCORD_INTEGRATION)
@@ -199,6 +200,8 @@ if (TF2BD_ENABLE_DISCORD_INTEGRATION)
 		"tf2_bot_detector/DiscordRichPresence.h"
 	)
 endif()
+
+include("${CMAKE_CURRENT_LIST_DIR}/cmake/findLIBZIP.cmake")
 
 find_package(OpenSSL REQUIRED)
 target_link_libraries(tf2_bot_detector)
